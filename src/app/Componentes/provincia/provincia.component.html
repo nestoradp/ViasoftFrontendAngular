@@ -1,0 +1,41 @@
+<div class="Container">
+<h3 class="align-content-center">Seleccione la Provincia</h3>
+ <div class="col-12">
+   <p-dropdown [options]="provincias" [(ngModel)]="selectedCityCode" placeholder="Select a City" optionLabel="nombre" [showClear]="true"></p-dropdown>
+   <button pButton pRipple class="ml-4"  (click)="HandleBuscar()" type="button" label="Buscar"></button>
+ </div>
+
+  <div *ngIf="lServicioProvncia.length>0" class="card">
+    <h3>Listado de Servicio</h3>
+    <p-table [value]="lServicioProvncia" >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Autorizador</th>
+          <th>"Autorização4"</th>
+          <th>Retorno Autorização4</th>
+          <th>Inutilização4</th>
+          <th>Consulta Protocolo4</th>
+          <th>Status Serviço4	</th>
+          <th>Tempo Médio</th>
+          <th>Consulta Cadastro4</th>
+          <th>Recepção Evento4</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-actualstatus>
+        <tr>
+          <td>{{ actualstatus.provincia }}</td>
+          <td *ngFor="let row of actualstatus.servicioActualProvinciaList">
+            <i
+              class="pi {{ row.status }} "
+            >{{ row.status }}</i>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+
+  </div>
+
+
+
+</div>

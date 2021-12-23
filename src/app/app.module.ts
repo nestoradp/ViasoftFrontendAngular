@@ -11,6 +11,12 @@ import {AppRoutingModule} from "./app-routing-module";
 import {TableModule} from "primeng/table";
 import {DataService} from "./Service/data.service";
 import {HttpClientModule} from "@angular/common/http";
+import { ProvinciaComponent } from './Componentes/provincia/provincia.component';
+import {DropdownModule} from "primeng/dropdown";
+import {FormsModule} from "@angular/forms";
+import {NoopAnimationsModule} from "@angular/platform-browser/animations";
+import {ButtonModule} from "primeng/button";
+import {ProvinciaModel} from "./Modelo/ProvinciaModel";
 
 // @ts-ignore
 @NgModule({
@@ -19,6 +25,7 @@ import {HttpClientModule} from "@angular/common/http";
     NavBarComponent,
     DataTableComponent,
     HomeComponent,
+    ProvinciaComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -26,7 +33,11 @@ import {HttpClientModule} from "@angular/common/http";
     TabMenuModule,
     ImageModule,
     TableModule,
-    HttpClientModule
+    HttpClientModule,
+    DropdownModule,
+    FormsModule,
+    NoopAnimationsModule,
+    ButtonModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

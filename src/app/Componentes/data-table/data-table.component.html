@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="card">
+    <h3>Listado de Servicio</h3>
+    <p-table [value]="LServicioActual">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Autorizador</th>
+          <th>"Autorização4"</th>
+          <th>Retorno Autorização4</th>
+          <th>Inutilização4</th>
+          <th>Consulta Protocolo4</th>
+          <th>Status Serviço4	</th>
+          <th>Tempo Médio</th>
+          <th>Consulta Cadastro4</th>
+          <th>Recepção Evento4</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-actualstatus>
+        <tr>
+          <td>{{ actualstatus.provincia }}</td>
+          <td *ngFor="let row of actualstatus.servicioActualProvinciaList">
+            <i
+              class="pi {{ row.status }} "
+            >{{ row.status }}</i>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+
+  </div>
+
+</div>

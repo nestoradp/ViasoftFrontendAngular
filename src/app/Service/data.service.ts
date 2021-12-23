@@ -20,6 +20,20 @@ DevolverEstadoActual():Observable<any> {
 });
 }
 
+DevolverProvincias():Observable<any>{
+  return this.http.get(this.baseUrl+"ListProvincia",{
+    observe:'response',
+    responseType:'json'
+  });
+}
+
+DevolverEstadoPorProvincia(id:string):Observable<any>{
+  return this.http.get(this.baseUrl +"historyStatus/StatusProvincia/"+id,{
+    observe:'response',
+    responseType:'json'
+
+  })
+}
 
 
 }
