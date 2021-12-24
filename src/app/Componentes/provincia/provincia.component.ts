@@ -3,6 +3,7 @@ import {DataService} from "../../Service/data.service";
 import {Router} from "@angular/router";
 import {ProvinciaModel} from "../../Modelo/ProvinciaModel";
 import {DataModel} from "../../Modelo/DataModel";
+import {EstadoServicioByProvinciaModel} from "../../Modelo/EstadoServicioByProvinciaModel";
 
 /*interface Provincia{
   name:string,
@@ -20,7 +21,8 @@ export class ProvinciaComponent implements OnInit{
 provincias: ProvinciaModel[];
   selectedCityCode: ProvinciaModel |any =null
 
-  lServicioProvncia: DataModel[];
+  lServicioProvncia: any[];
+  NameProvincia:string="";
 
   constructor(private service: DataService, private router:Router) {
     this.provincias=[
@@ -49,12 +51,17 @@ provincias: ProvinciaModel[];
 HandleBuscar(){
     let id:string =this.selectedCityCode.id;
     this.service.DevolverEstadoPorProvincia(id).subscribe(data=>{
-      for (let i =0; i< data.body.Provincia.servicioActualProvinciaList.length; i++){
-        let actualstatus = data.body.Provincia as DataModel
-         this.lServicioProvncia.push(actualstatus);
-      }
+     this.NameProvincia= data.body.Provincia.provincia;
+     console.log(data.body)
+      for(let i=0;i<data.body.Provincia.servicioActualProvinciaList.length; i+=8){
+      let arreglo:any []=[];
+      for(let j=i;j<8+i;j++){
+     let actualstatus = data.body.Provincia.servicioActualProvinciaList[j] as EstadoServicioByProvinciaModel
+       arreglo.push(actualstatus);}
+        this.lServicioProvncia.push(arreglo);}
+  console.log(this.lServicioProvncia);
     })
-     console.log(this.lServicioProvncia);
+
 }
 
 }

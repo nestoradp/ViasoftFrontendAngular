@@ -7,7 +7,7 @@
 
   <div *ngIf="lServicioProvncia.length>0" class="card">
     <h3>Listado de Servicio</h3>
-    <p-table [value]="lServicioProvncia" >
+<p-table [value]="lServicioProvncia" >
       <ng-template pTemplate="header">
         <tr>
           <th>Autorizador</th>
@@ -21,21 +21,15 @@
           <th>Recepção Evento4</th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-actualstatus>
+      <ng-template pTemplate="body" let-arreglo>
         <tr>
-          <td>{{ actualstatus.provincia }}</td>
-          <td *ngFor="let row of actualstatus.servicioActualProvinciaList">
-            <i
-              class="pi {{ row.status }} "
-            >{{ row.status }}</i>
+          <td>{{ NameProvincia}}</td>
+          <td *ngFor="let row of arreglo">
+            <i class="pi {{ row.status }} ">{{ row.status }}</i>
           </td>
         </tr>
       </ng-template>
     </p-table>
-
-
-  </div>
-
-
+</div>
 
 </div>

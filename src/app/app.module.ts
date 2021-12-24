@@ -17,6 +17,8 @@ import {FormsModule} from "@angular/forms";
 import {NoopAnimationsModule} from "@angular/platform-browser/animations";
 import {ButtonModule} from "primeng/button";
 import {ProvinciaModel} from "./Modelo/ProvinciaModel";
+import {CardModule} from "primeng/card";
+import {PanelModule} from "primeng/panel";
 
 // @ts-ignore
 @NgModule({
@@ -37,7 +39,9 @@ import {ProvinciaModel} from "./Modelo/ProvinciaModel";
     DropdownModule,
     FormsModule,
     NoopAnimationsModule,
-    ButtonModule
+    ButtonModule,
+    CardModule,
+    PanelModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]
