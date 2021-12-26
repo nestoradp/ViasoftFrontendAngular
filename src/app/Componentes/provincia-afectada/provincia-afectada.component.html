@@ -1,0 +1,14 @@
+
+<div class="Content col-8">
+ <div class="Content" *ngIf="provincia!==null">
+<h1 class="align-content-center bg-green-300"> Provincia con Mayor Afectacion:{{provincia}}</h1>
+  <h1 class="align-content-center bg-blue-300"> Tiempo de la Afectacion: {{tiempoAfectado}}</h1>
+ </div>
+  <p-messages severity="info" *ngIf="provincia===null">
+    <ng-template pTemplate>
+      <div class="p-ml-2">No se encontraron de registros de provincias afectadas</div>
+    </ng-template>
+  </p-messages>
+
+
+</div>

@@ -25,11 +25,7 @@ export class ProvinciaComponent implements OnInit{
   ErrorMensaje:string |null =null;
 
   constructor(private service: DataService, private router:Router) {
-    this.provincias=[
-     /* {name: "New Yor", uuid:"sddsd"},
-      {name: "New Yorss", uuid:"sddsd"},
-      {name: "New Yorss33", uuid:"sddssdsd"}*/
-      ];
+    this.provincias=[];
     this.lServicioProvncia=[];
   }
 
@@ -67,8 +63,6 @@ HandleBuscar():void{
 }
 
 ValidarProvincia():boolean{
-  console.log(this.ErrorMensaje);
- console.log(this.selectedCityCode);
   if(this.selectedCityCode===null){
     this.lServicioProvncia=[];
     this.ErrorMensaje="Debe Seleccionar una provincia";
@@ -77,6 +71,5 @@ ValidarProvincia():boolean{
   this.ErrorMensaje= null;
   return true;}
 }
-
 
 }

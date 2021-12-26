@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -32,6 +33,13 @@ DevolverEstadoPorProvincia(id:string):Observable<any>{
     observe:'response',
     responseType:'json'
 
+  })
+}
+
+DevolverProvinciaMasAfectada():Observable<any>{
+  return this.http.get(this.baseUrl+"historyStatus/AfectadaProvincia",{
+    observe:"response",
+    responseType:"json"
   })
 }
 

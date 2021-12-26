@@ -21,8 +21,8 @@ export class NavBarComponent implements OnInit {
       {label: 'Inicio', icon: 'pi pi-fw pi-home', routerLink:['']},
       {label: 'Listado', icon: 'pi pi-fw pi-calendar', routerLink:['List']},
       {label: 'Provincia', icon: 'pi pi-fw pi-pencil', routerLink:['province']},
-      {label: 'Documentation', icon: 'pi pi-fw pi-file'},
-      {label: 'Settings', icon: 'pi pi-fw pi-cog'}
+      {label: 'Provincia Afectada', icon: 'pi pi-fw pi-file', routerLink:['provinceAffect']}
+
     ];
      this.activeItem = this.items[0];
   }

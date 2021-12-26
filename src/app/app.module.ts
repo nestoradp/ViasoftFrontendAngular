@@ -20,6 +20,7 @@ import {ProvinciaModel} from "./Modelo/ProvinciaModel";
 import {CardModule} from "primeng/card";
 import {PanelModule} from "primeng/panel";
 import {MessagesModule} from "primeng/messages";
+import { ProvinciaAfectadaComponent } from './Componentes/provincia-afectada/provincia-afectada.component';
 
 // @ts-ignore
 @NgModule({
@@ -29,6 +30,7 @@ import {MessagesModule} from "primeng/messages";
     DataTableComponent,
     HomeComponent,
     ProvinciaComponent,
+    ProvinciaAfectadaComponent,
   ],
   imports: [
     AppRoutingModule,
