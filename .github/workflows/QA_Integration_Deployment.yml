@@ -28,7 +28,7 @@ jobs:
         env:
           CI: false
           REACT_APP_API_URL: ${{env.API_URL}}
-        run: npm run build
+        run: ng build
 
       - name:  Setup environment vars
         env:
