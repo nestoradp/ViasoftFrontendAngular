@@ -1,0 +1,36 @@
+name: QA_Integration_Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  API_URL: http://localhost:9087/api/v1/
+  SERVICE_NAME: qa-ViaSoft
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Set up Node.js version
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        env:
+          CI: false
+          REACT_APP_API_URL: ${{env.API_URL}}
+        run: npm run build
+
+      - name:  Setup environment vars
+        env:
+          SERVICE_NAME: ${{ env.SERVICE_NAME }}
+        run: eval "echo \"$(cat app.yaml)\"" > app.yaml
