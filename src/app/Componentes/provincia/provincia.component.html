@@ -1,8 +1,13 @@
 <div class="Container">
 <h3 class="align-content-center">Seleccione la Provincia</h3>
  <div class="col-12">
-   <p-dropdown [options]="provincias" [(ngModel)]="selectedCityCode" placeholder="Select a City" optionLabel="nombre" [showClear]="true"></p-dropdown>
+   <p-dropdown [options]="provincias" [(ngModel)]="selectedCityCode" placeholder="Select a City" optionLabel="nombre" [showClear]="true" (onBlur)="ValidarProvincia()"></p-dropdown>
    <button pButton pRipple class="ml-4"  (click)="HandleBuscar()" type="button" label="Buscar"></button>
+   <p-messages *ngIf="ErrorMensaje!=null" p-messages severity="error">
+     <ng-template pTemplate>
+       <span class="custom-message">{{ErrorMensaje}}.</span>
+     </ng-template>
+   </p-messages>
  </div>
 
   <div *ngIf="lServicioProvncia.length>0" class="card">

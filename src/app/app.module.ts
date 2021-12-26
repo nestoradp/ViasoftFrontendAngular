@@ -19,6 +19,7 @@ import {ButtonModule} from "primeng/button";
 import {ProvinciaModel} from "./Modelo/ProvinciaModel";
 import {CardModule} from "primeng/card";
 import {PanelModule} from "primeng/panel";
+import {MessagesModule} from "primeng/messages";
 
 // @ts-ignore
 @NgModule({
@@ -41,7 +42,8 @@ import {PanelModule} from "primeng/panel";
     NoopAnimationsModule,
     ButtonModule,
     CardModule,
-    PanelModule
+    PanelModule,
+    MessagesModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

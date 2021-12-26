@@ -18,11 +18,11 @@ import {EstadoServicioByProvinciaModel} from "../../Modelo/EstadoServicioByProvi
 
 
 export class ProvinciaComponent implements OnInit{
-provincias: ProvinciaModel[];
+  provincias: ProvinciaModel[];
   selectedCityCode: ProvinciaModel |any =null
-
   lServicioProvncia: any[];
   NameProvincia:string="";
+  ErrorMensaje:string |null =null;
 
   constructor(private service: DataService, private router:Router) {
     this.provincias=[
@@ -48,20 +48,35 @@ provincias: ProvinciaModel[];
    })
   }
 
-HandleBuscar(){
-    let id:string =this.selectedCityCode.id;
-    this.service.DevolverEstadoPorProvincia(id).subscribe(data=>{
-     this.NameProvincia= data.body.Provincia.provincia;
-     console.log(data.body)
-      for(let i=0;i<data.body.Provincia.servicioActualProvinciaList.length; i+=8){
-      let arreglo:any []=[];
-      for(let j=i;j<8+i;j++){
-     let actualstatus = data.body.Provincia.servicioActualProvinciaList[j] as EstadoServicioByProvinciaModel
-       arreglo.push(actualstatus);}
-        this.lServicioProvncia.push(arreglo);}
-  console.log(this.lServicioProvncia);
-    })
-
+HandleBuscar():void{
+    if(this.ValidarProvincia()) {
+      let id: string = this.selectedCityCode.id;
+      this.service.DevolverEstadoPorProvincia(id).subscribe(data => {
+        this.NameProvincia = data.body.Provincia.provincia;
+        console.log(data.body)
+        for (let i = 0; i < data.body.Provincia.servicioActualProvinciaList.length; i += 8) {
+          let arreglo: any [] = [];
+          for (let j = i; j < 8 + i; j++) {
+            let actualstatus = data.body.Provincia.servicioActualProvinciaList[j] as EstadoServicioByProvinciaModel
+            arreglo.push(actualstatus);
+          }
+          this.lServicioProvncia.push(arreglo);
+        }
+      })
+    }
 }
+
+ValidarProvincia():boolean{
+  console.log(this.ErrorMensaje);
+ console.log(this.selectedCityCode);
+  if(this.selectedCityCode===null){
+    this.lServicioProvncia=[];
+    this.ErrorMensaje="Debe Seleccionar una provincia";
+    return false;
+  }else{
+  this.ErrorMensaje= null;
+  return true;}
+}
+
 
 }
