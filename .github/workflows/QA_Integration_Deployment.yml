@@ -27,7 +27,7 @@ jobs:
       - name: Build
         env:
           CI: false
-        APP_API_URL: ${{env.API_URL}}
+        API_URL: ${{env.API_URL}}
         run: npm run build -- --prod
 
       - name:  Setup environment vars
