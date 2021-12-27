@@ -48,8 +48,5 @@ jobs:
           VERSION: ${{ needs.release.outputs.version }}
         run: eval "echo \"$(cat src/environments/environment.prod.ts)\"" > src/environments/environment.prod.ts
 
-      - name: Build
-        env:
-          API_URL: ${{ env.API_UR }}
-        run: npm run build -- --prod
+    
 
