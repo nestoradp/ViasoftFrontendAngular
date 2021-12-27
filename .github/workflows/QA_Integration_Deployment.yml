@@ -1,17 +1,36 @@
-name: QA_Integration_Deployment
+name: QA INTEGRATION AND DEPLOY
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - 'v*'
+  workflow_dispatch:
 
 env:
   API_URL: http://localhost:9087/api/v1/
   SERVICE_NAME: qa-ViaSoft
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
+
+    outputs:
+      version: ${{ steps.release_version.outputs.version }}
+
+    steps:
+      - uses: actions/checkout@main
+        with:
+          fetch-depth: 0
+
+      - name: Release version
+        id: release_version
+        run: |
+          output=$(git describe --tags --abbrev=0)
+          echo "::set-output name=version::$output"
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [release]
 
     steps:
       - uses: actions/checkout@master
@@ -19,18 +38,18 @@ jobs:
       - name: Set up Node.js version
         uses: actions/setup-node@v1
         with:
-          node-version: '14.x'
-          cache: 'npm'
+          node-version: "14.x"
+
       - name: Install dependencies
         run: npm install
 
+      - name: Setup build environment
+        env:
+          VERSION: ${{ needs.release.outputs.version }}
+        run: eval "echo \"$(cat src/environments/environment.prod.ts)\"" > src/environments/environment.prod.ts
+
       - name: Build
         env:
-          CI: false
-          ANGULAR_API_URL: ${{env.API_URL}}
+          API_URL: ${{ env.API_UR }}
         run: npm run build -- --prod
 
-      - name:  Setup environment vars
-        env:
-          SERVICE_NAME: ${{ env.SERVICE_NAME }}
-        run: eval "echo \"$(cat app.yaml)\"" > app.yaml
